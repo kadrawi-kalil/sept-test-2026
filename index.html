@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Diagnostic Test — Grades 1 to 12</title>
+    <style>
+      .survey {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 30px;
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+        text-align: center;
+      }
+
+      .survey h2 {
+        margin-top: 0;
+        font-size: 1.4rem;
+        color: #111827;
+      }
+
+      .survey p {
+        font-size: 1rem;
+        color: var(--muted);
+        margin: 18px 0 28px;
+        line-height: 1.6;
+      }
+
+      :root {
+        --bg: #f3f6fb;
+        --card: #ffffff;
+        --accent: #74eb25;
+        --accent-2: #06b6d4;
+        --muted: #6b7280;
+        --radius: 12px;
+        --gap: 18px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial;
+        background: linear-gradient(180deg, var(--bg), #e9f0ff 200px);
+        min-height: 100vh;
+        padding: 36px;
+        color: #111827;
+      }
+
+      header {
+        max-width: 1100px;
+        margin: 0 auto 22px;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0 0 6px;
+        font-size: 1.5rem;
+      }
+      header p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid-wrap {
+        max-width: 1100px;
+        margin: 20px auto 0;
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+
+      /* responsive columns */
+      @media (min-width: 520px) {
+        .grid-wrap {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 840px) {
+        .grid-wrap {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (min-width: 1200px) {
+        .grid-wrap {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease;
+        min-height: 170px;
+      }
+      .card:focus-within,
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(17, 24, 39, 0.12);
+      }
+
+      .grade-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        padding: 8px 12px;
+        border-radius: 999px;
+        width: fit-content;
+        font-size: 0.95rem;
+      }
+
+      .card h2 {
+        margin: 0;
+        font-size: 1.15rem;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        flex: 1 1 auto;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .btn {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+        transition:
+          transform 0.12s ease,
+          opacity 0.12s ease;
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+      .btn.secondary {
+        background: transparent;
+        color: var(--accent);
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        box-shadow: none;
+        font-weight: 600;
+      }
+
+      /* small helper */
+      .note {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-top: 14px;
+      }
+
+      /* accessible focus ring */
+      a:focus {
+        outline: 3px solid rgba(37, 99, 235, 0.18);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Diagnostic Test — Grades 1 to 12</h1>
+      <p>
+        Select your grade and click <strong>Start Test</strong>. Each opens in a
+        new tab.
+      </p>
+    </header>
+
+    <main class="grid-wrap" id="grid" aria-live="polite">
+      <!-- Cards will be generated here by JavaScript -->
+    </main>
+
+    <script>
+      // ----- EDIT THIS: Put your 12 form URLs here in order grade 1 -> grade 12 -----
+      const forms = [
+        {
+          grade: 1,
+          url: "https://forms.gle/ihDeDuqTy3EQJfWy8",
+        },
+        {
+          grade: 2,
+          url: "",
+        },
+        {
+          grade: 3,
+          url: "",
+        },
+        {
+          grade: 4,
+          url: "",
+        },
+        { grade: 5, url: "" },
+        { grade: 6, url: "" },
+        { grade: 7, url: "" },
+        {
+          grade: 8,
+          url: "",
+        },
+        {
+          grade: 9,
+          url: "",
+        },
+        {
+          grade: 10,
+          url: "https://forms.gle/KgDaXFJMjnoN4GFy5",
+        },
+        { grade: 11, url: "" },
+        { grade: 12, url: "https://forms.gle/ZxHoD6t68YAU7dH76" },
+      ];
+
+      const grid = document.getElementById("grid");
+
+      // Create card element for each grade
+      forms.forEach((item) => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.setAttribute("aria-label", `Grade ${item.grade} exam card`);
+
+        card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+          <div class="grade-badge">Grade ${item.grade}</div>
+          <div style="font-size:0.85rem;color:var(--muted)">Duration: 15 min</div>
+        </div>
+
+        <h2>Grade ${item.grade} — ICT Test</h2>
+        <p>Click the button below to open the exam for Grade ${item.grade}. Answers will be submitted on the form.</p>
+
+        <div class="actions" role="group" aria-label="Grade ${item.grade} actions">
+          <a class="btn" href="${item.url}" target="_blank" rel="noopener noreferrer">Start Exam ↗</a>
+          <a class="btn secondary" href="${item.url}" target="_blank" rel="noopener noreferrer" title="Open exam link">Open</a>
+        </div>
+      `;
+
+        // Visual hint if link not set
+        if (!item.url || item.url === "PUT_YOUR_LINK_HERE") {
+          card.querySelectorAll("a").forEach((a) => {
+            a.classList.add("secondary");
+            a.href = "#";
+            a.setAttribute("aria-disabled", "true");
+            a.onclick = (e) => {
+              e.preventDefault();
+              alert(
+                "No exam link set for this grade. Edit the forms array in index.html to add the URL.",
+              );
+            };
+          });
+        }
+
+        grid.appendChild(card);
+      });
+    </script>
+  </body>
+</html>
